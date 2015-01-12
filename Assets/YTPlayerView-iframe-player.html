@@ -88,14 +88,14 @@
            this.oldClearVideo();
         }
 
-        function forcePlay() {
-           if (player.interrupted) {
-               player.oldPlayVideo();
-               window.location.href = 'ytplayer://onStateChange?data=' + YT.PlayerState.PLAYING;
-           }
-        }
+<!--        function forcePlay() {-->
+<!--           if (player.interrupted) {-->
+<!--               player.oldPlayVideo();-->
+<!--               window.location.href = 'ytplayer://onStateChange?data=' + YT.PlayerState.PLAYING;-->
+<!--           }-->
+<!--        }-->
 
-        window.setInterval(forcePlay, 5000);
+<!--        window.setInterval(forcePlay, 5000);-->
         window.location.href = 'ytplayer://onReady?data=' + event.data;
 
     }
