@@ -100,6 +100,7 @@
 
     }
     function onStateChange(event) {
+
         if (!error) {
             // Send notification for all states but Paused and for Paused if the user did pause.
             if (event.data != YT.PlayerState.PAUSED) {
@@ -117,6 +118,8 @@
                 else {
                     // Youtube player API tried to pause internaly, do not pause.
                     player.interrupted = true;
+                    window.location.href = 'ytplayer://onStateChange?data=' + event.data;
+
                 }
             }
         }
