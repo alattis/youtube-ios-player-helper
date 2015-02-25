@@ -122,6 +122,10 @@
 
                 }
             }
+            
+            if (event.data == YT.PlayerState.PLAYING) {
+                checkSeek();
+            }
         }
         else {
             error = false;
@@ -137,6 +141,27 @@
         }
         window.location.href = 'ytplayer://onError?data=' + event.data;
     }
+    
+    
+    var checkSeekPeriod = 500;
+    var checkSeekMargin = 500;
+    var prevCurrentTime = 0;
+    function checkSeek() {
+        var currentTime= player.getCurrentTime();
+        if (prevCurrentTime > 0) {
+            var diff = (currentTime - prevCurrentTime) * 1000;
+            if ((diff - checkSeekPeriod) > checkSeekMargin) {
+                console.log("checkSeek diff = " + diff.toFixed(0) + "ms");
+                player.seekTo(prevCurrentTime, true);
+            }
+        }
+        prevCurrentTime = currentTime;
+        
+        setTimeout(function() {
+                   return checkSeek();
+                   }, checkSeekPeriod);
+    };
+
     window.onresize = function() {
         player.setSize(window.innerWidth, window.innerHeight);
     }
