@@ -91,6 +91,11 @@ NSString static *const kYTPlayerAdUrlRegexPattern = @"^http(s)://pubads.g.double
   return [self loadWithPlayerParams:playerParams];
 }
 
+
+- (void) dealloc {
+    self.webView.delegate = nil;
+}
+
 #pragma mark - Player methods
 
 - (void)playVideo {
